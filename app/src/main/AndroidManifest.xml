@@ -15,6 +15,7 @@
         android:theme="@style/Theme.QRAnalyzer">
         <activity
             android:name=".ResultActivity"
+            android:configChanges="orientation|screenSize"
             android:exported="false" />
         <activity
             android:name=".QRReaderActivity"

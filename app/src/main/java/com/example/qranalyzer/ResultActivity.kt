@@ -11,16 +11,13 @@ class ResultActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
 
-        val result: String? = intent.getStringExtra(RESULT_MESSAGE)
+        val result = intent.getStringExtra(RESULT_MESSAGE) ?: return
+
+        vibrate(300)
 
         val textViewResult = findViewById<TextView>(R.id.textViewResult)
 
-        if (result != null) {
-            vibrate(300)
-            textViewResult.text = result
-        } else {
-            textViewResult.text = getString(R.string.message_null_result_error)
-        }
+        textViewResult.text = result
     }
 
     private fun vibrate(milliseconds: Long) {

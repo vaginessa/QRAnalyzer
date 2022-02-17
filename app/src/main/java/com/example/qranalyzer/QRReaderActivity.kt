@@ -12,7 +12,7 @@ private fun ByteArray.toHex(): String =
 internal const val RESULT_MESSAGE = "com.example.qranalyzer.RESULT_MESSAGE"
 
 class QRReaderActivity : AppCompatActivity() {
-    private val barcodeLauncher = registerForActivityResult(
+    private val qrLauncher = registerForActivityResult(
         ScanContract()
     ) { result: ScanIntentResult ->
         val resultMessage = "${getString(R.string.content)}: ${result.contents}\n\n" +
@@ -31,6 +31,6 @@ class QRReaderActivity : AppCompatActivity() {
         options.setOrientationLocked(false)
         options.setBeepEnabled(false)
 
-        barcodeLauncher.launch(options)
+        qrLauncher.launch(options)
     }
 }

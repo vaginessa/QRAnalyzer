@@ -6,20 +6,31 @@ import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanIntentResult
 import com.journeyapps.barcodescanner.ScanOptions
 
-private fun ByteArray.toHex(): String =
-    joinToString(separator = "") { eachByte -> "%02x".format(eachByte) }
-
 internal const val RESULT_MESSAGE = "com.example.qranalyzer.RESULT_MESSAGE"
 
 class QRReaderActivity : AppCompatActivity() {
     private val qrLauncher = registerForActivityResult(
         ScanContract()
     ) { result: ScanIntentResult ->
-        val resultMessage =
+        var resultMessage =
             "${getString(R.string.contents_begin)}\n ${result.contents}\n${getString(R.string.contents_end)}\n\n" +
                     "${getString(R.string.details)}\n" +
                     "${getString(R.string.error_correction_level)}: ${result.errorCorrectionLevel}\n" +
                     "${getString(R.string.raw_data)}: ${result.rawBytes.toHex()}"
+
+        val decoder = SQRCDecoder(result.rawBytes)
+
+        if (decoder.isSQRC()) {
+            resultMessage += "\n\n" + getString(R.string.it_is_an_sqrc)
+
+            val decodedContent = decoder.decode()
+
+            resultMessage += "\n\n" + if (decodedContent != null) {
+                getString(R.string.decoded_contents) + "\n" + decodedContent
+            } else {
+                getString(R.string.decode_failed)
+            }
+        }
 
         val intent = Intent(this, ResultActivity::class.java)
         intent.putExtra(RESULT_MESSAGE, resultMessage)

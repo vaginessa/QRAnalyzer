@@ -15,8 +15,11 @@ class QRReaderActivity : AppCompatActivity() {
     private val qrLauncher = registerForActivityResult(
         ScanContract()
     ) { result: ScanIntentResult ->
-        val resultMessage = "${getString(R.string.content)}: ${result.contents}\n\n" +
-                "${getString(R.string.hex)}: ${result.rawBytes.toHex()}"
+        val resultMessage =
+            "${getString(R.string.contents_begin)}\n ${result.contents}\n${getString(R.string.contents_end)}\n\n" +
+                    "${getString(R.string.details)}\n" +
+                    "${getString(R.string.error_correction_level)}: ${result.errorCorrectionLevel}\n" +
+                    "${getString(R.string.raw_data)}: ${result.rawBytes.toHex()}"
 
         val intent = Intent(this, ResultActivity::class.java)
         intent.putExtra(RESULT_MESSAGE, resultMessage)

@@ -31,9 +31,8 @@ class QRReaderActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_qrreader)
+    override fun onStart() {
+        super.onStart()
 
         val options = ScanOptions()
         options.setDesiredBarcodeFormats(ScanOptions.QR_CODE)

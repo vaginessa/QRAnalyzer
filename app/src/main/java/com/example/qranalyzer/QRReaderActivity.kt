@@ -1,26 +1,34 @@
 package com.example.qranalyzer
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
+import android.os.Vibrator
 import androidx.appcompat.app.AppCompatActivity
 import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanIntentResult
 import com.journeyapps.barcodescanner.ScanOptions
 
+private fun ByteArray.toHex(): String =
+    joinToString(separator = "") { eachByte -> "%02x".format(eachByte) }
+
+internal const val RESULT_MESSAGE = "com.example.qranalyzer.RESULT_MESSAGE"
 
 class QRReaderActivity : AppCompatActivity() {
     private val barcodeLauncher = registerForActivityResult(
         ScanContract()
     ) { result: ScanIntentResult ->
-        if (result.contents == null) {
-            Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
-        } else {
-            Toast.makeText(
-                this,
-                "Scanned: " + result.contents,
-                Toast.LENGTH_LONG
-            ).show()
-        }
+        vibrate(300)
+
+        val resultMessage = "${getString(R.string.content)}: ${result.contents}\n\n" +
+                "${getString(R.string.hex)}: ${result.rawBytes.toHex()}"
+
+        val intent = Intent(this, ResultActivity::class.java)
+        intent.putExtra(
+            RESULT_MESSAGE,
+            resultMessage
+        )
+        startActivity(intent)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,5 +41,10 @@ class QRReaderActivity : AppCompatActivity() {
         options.setBeepEnabled(false)
 
         barcodeLauncher.launch(options)
+    }
+
+    private fun vibrate(milliseconds: Long) {
+        val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        vibrator.vibrate(milliseconds)
     }
 }

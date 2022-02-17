@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">QRAnalyzer</string>
-    <string name="content" translatable="false">Content</string>
-    <string name="hex" translatable="false">Hex</string>
+    <string name="contents_begin">[Contents begin]</string>
+    <string name="contents_end">[Contents end]</string>
+    <string name="details">[Details]</string>
+    <string name="error_correction_level">Error Correction Level</string>
+    <string name="raw_data">Raw Data</string>
 </resources>

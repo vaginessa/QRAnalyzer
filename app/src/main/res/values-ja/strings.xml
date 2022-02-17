@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">QRアナライザ</string>
+    <string name="contents_begin">[内容開始]</string>
+    <string name="contents_end">[内容終了]</string>
+    <string name="details">[詳細]</string>
+    <string name="error_correction_level">エラー訂正レベル</string>
+    <string name="raw_data">生データ</string>
 </resources>

@@ -19,10 +19,7 @@ class QRReaderActivity : AppCompatActivity() {
                 "${getString(R.string.hex)}: ${result.rawBytes.toHex()}"
 
         val intent = Intent(this, ResultActivity::class.java)
-        intent.putExtra(
-            RESULT_MESSAGE,
-            resultMessage
-        )
+        intent.putExtra(RESULT_MESSAGE, resultMessage)
         startActivity(intent)
     }
 

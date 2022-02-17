@@ -1,0 +1,2 @@
+# QRAnalyzer
+analyze QR code

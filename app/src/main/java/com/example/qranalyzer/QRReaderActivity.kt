@@ -6,9 +6,6 @@ import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanIntentResult
 import com.journeyapps.barcodescanner.ScanOptions
 
-private fun ByteArray.toHex(): String =
-    joinToString(separator = "") { eachByte -> "%02x".format(eachByte) }
-
 internal const val RESULT_MESSAGE = "com.example.qranalyzer.RESULT_MESSAGE"
 
 class QRReaderActivity : AppCompatActivity() {
@@ -63,6 +60,22 @@ class QRReaderActivity : AppCompatActivity() {
 
             if (qrDecoder.hasResidualData) {
                 resultMessage += "\n${getString(R.string.there_is_residual_data)}\n"
+            }
+
+            val endIndex = qrDecoder.endIndex
+
+            val sqrcDecoder = SQRCDecoder(result.rawBytes, qrDecoder.version, startIndex = endIndex)
+
+            if (sqrcDecoder.isSQRC()) {
+                resultMessage += "\n${getString(R.string.it_is_an_sqrc)}\n"
+
+                val decodedContents = sqrcDecoder.decode()
+
+                resultMessage += "\n" + if (decodedContents != null) {
+                    getString(R.string.decoded_contents) + "\n" + decodedContents
+                } else {
+                    getString(R.string.decoding_failed)
+                } + "\n"
             }
 
         } catch (e: Exception) {

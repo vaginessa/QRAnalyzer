@@ -8,6 +8,7 @@
     <string name="it_is_an_sqrc">It is an SQRC.</string>
     <string name="decoded_contents">[Decoded Contents]</string>
     <string name="decode_failed">decode failed</string>
+    <string name="restoration_ability">Restoration Ability</string>
     <string name="version">Version</string>
     <string name="decode_success">decode success</string>
     <string name="cell_size">Cell Size</string>

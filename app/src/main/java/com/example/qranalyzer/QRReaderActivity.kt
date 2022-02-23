@@ -36,7 +36,16 @@ class QRReaderActivity : AppCompatActivity() {
             } + "\n"
 
             // error collection level
-            resultMessage += "${getString(R.string.error_correction_level)}: ${result.errorCorrectionLevel}\n"
+            resultMessage += "${getString(R.string.error_correction_level)}: ${result.errorCorrectionLevel} (" +
+                    "%d%% ".format(
+                        when (result.errorCorrectionLevel) {
+                            "L" -> 7
+                            "M" -> 15
+                            "Q" -> 25
+                            "H" -> 30
+                            else -> -1
+                        }
+                    ) + getString(R.string.restoration_ability) + ")\n"
 
             val cellSize = qrDecoder.calculateCellSize()
 

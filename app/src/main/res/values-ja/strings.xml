@@ -9,6 +9,7 @@
     <string name="it_is_an_sqrc">これはSQRCです。</string>
     <string name="decoded_contents">【デコード内容】</string>
     <string name="decode_failed">デコード失敗</string>
+    <string name="restoration_ability">復元能力</string>
     <string name="version">バージョン</string>
     <string name="decode_success">デコード成功</string>
     <string name="cell_size">セルサイズ</string>

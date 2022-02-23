@@ -30,9 +30,9 @@ class QRReaderActivity : AppCompatActivity() {
 
             // is decoding successful
             resultMessage += if (result.contents == myContents) {
-                getString(R.string.decode_success)
+                getString(R.string.decoding_succeeded)
             } else {
-                getString(R.string.decode_failed)
+                getString(R.string.decoding_failed)
             } + "\n"
 
             // error collection level

@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">QRアナライザ</string>
-    <string name="contents_begin">[内容開始]</string>
-    <string name="contents_end">[内容終了]</string>
-    <string name="details">[詳細]</string>
+    <string name="contents_begin">【内容開始】</string>
+    <string name="contents_end">【内容終了】</string>
+    <string name="details">【詳細】</string>
     <string name="error_correction_level">エラー訂正レベル</string>
     <string name="raw_data">生データ</string>
+    <string name="it_is_an_sqrc">これはSQRCです。</string>
+    <string name="decoded_contents">【デコード内容】</string>
+    <string name="decode_failed">デコード失敗</string>
+    <string name="restoration_ability">復元能力</string>
+    <string name="version">バージョン</string>
+    <string name="decode_success">デコード成功</string>
+    <string name="cell_size">セルサイズ</string>
+    <string name="hex_contents">Hex内容</string>
 </resources>

@@ -5,4 +5,12 @@
     <string name="details">[Details]</string>
     <string name="error_correction_level">Error Correction Level</string>
     <string name="raw_data">Raw Data</string>
+    <string name="it_is_an_sqrc">It is an SQRC.</string>
+    <string name="decoded_contents">[Decoded Contents]</string>
+    <string name="decode_failed">decode failed</string>
+    <string name="restoration_ability">Restoration Ability</string>
+    <string name="version">Version</string>
+    <string name="decode_success">decode success</string>
+    <string name="cell_size">Cell Size</string>
+    <string name="hex_contents">Hex Contents</string>
 </resources>

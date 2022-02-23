@@ -15,6 +15,8 @@ class QRReaderActivity : AppCompatActivity() {
     private val qrLauncher = registerForActivityResult(
         ScanContract()
     ) { result: ScanIntentResult ->
+        result.contents ?: return@registerForActivityResult
+
         // contents
         var resultMessage =
             "${getString(R.string.contents_begin)}\n${result.contents}\n${getString(R.string.contents_end)}\n\n"

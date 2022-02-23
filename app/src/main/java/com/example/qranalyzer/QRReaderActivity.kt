@@ -6,30 +6,67 @@ import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanIntentResult
 import com.journeyapps.barcodescanner.ScanOptions
 
+private fun ByteArray.toHex(): String =
+    joinToString(separator = "") { eachByte -> "%02x".format(eachByte) }
+
 internal const val RESULT_MESSAGE = "com.example.qranalyzer.RESULT_MESSAGE"
 
 class QRReaderActivity : AppCompatActivity() {
     private val qrLauncher = registerForActivityResult(
         ScanContract()
     ) { result: ScanIntentResult ->
+        result.contents ?: return@registerForActivityResult
+
+        // contents
         var resultMessage =
-            "${getString(R.string.contents_begin)}\n ${result.contents}\n${getString(R.string.contents_end)}\n\n" +
-                    "${getString(R.string.details)}\n" +
-                    "${getString(R.string.error_correction_level)}: ${result.errorCorrectionLevel}\n" +
-                    "${getString(R.string.raw_data)}: ${result.rawBytes.toHex()}"
+            "${getString(R.string.contents_begin)}\n${result.contents}\n${getString(R.string.contents_end)}\n\n"
 
-        val decoder = SQRCDecoder(result.rawBytes)
+        try {
+            val qrDecoder = QRDecoder(result.rawBytes, result.errorCorrectionLevel)
+            val myContents = qrDecoder.decode()
 
-        if (decoder.isSQRC()) {
-            resultMessage += "\n\n" + getString(R.string.it_is_an_sqrc)
+            // details
+            resultMessage += "${getString(R.string.details)}\n"
 
-            val decodedContent = decoder.decode()
-
-            resultMessage += "\n\n" + if (decodedContent != null) {
-                getString(R.string.decoded_contents) + "\n" + decodedContent
+            // is decoding successful
+            resultMessage += if (result.contents == myContents) {
+                getString(R.string.decoding_succeeded)
             } else {
-                getString(R.string.decode_failed)
+                getString(R.string.decoding_failed)
+            } + "\n"
+
+            // error collection level
+            resultMessage += "${getString(R.string.error_correction_level)}: ${result.errorCorrectionLevel} (" +
+                    "%d%% ".format(
+                        when (result.errorCorrectionLevel) {
+                            "L" -> 7
+                            "M" -> 15
+                            "Q" -> 25
+                            "H" -> 30
+                            else -> -1
+                        }
+                    ) + getString(R.string.restoration_ability) + ")\n"
+
+            val cellSize = qrDecoder.calculateCellSize()
+
+            // cell size
+            resultMessage += "${getString(R.string.version)}: ${qrDecoder.version}\n" +
+                    "${getString(R.string.cell_size)}: ${cellSize}x${cellSize}\n"
+
+            // raw data
+            resultMessage += "${getString(R.string.raw_data)}: ${result.rawBytes.toHex()}\n"
+
+            // hex contents
+            if (qrDecoder.hexContents != "") {
+                resultMessage += "\n${getString(R.string.hex_contents)}: ${qrDecoder.hexContents}\n"
             }
+
+            if (qrDecoder.hasResidualData) {
+                resultMessage += "\n${getString(R.string.there_is_residual_data)}\n"
+            }
+
+        } catch (e: Exception) {
+            resultMessage += e.printStackTrace()
         }
 
         val intent = Intent(this, ResultActivity::class.java)

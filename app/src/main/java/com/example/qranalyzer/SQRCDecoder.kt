@@ -48,14 +48,8 @@ class SQRCDecoder(
             val c = coreOfSQRC(len, index)
 
             if (c.size % 8 != 0) {
-                // Provisional
+                // Unanalyzed
                 continue
-//                val h = c.toHex()
-//                val cutLen = h.length / 16 * 16
-//                val d = decrypt(h.substring(0, cutLen).fromHex())
-//                return "[Residual (Provisional):Incomplete, No Check]\n" +
-//                        QRDecoder((d.toHex() + "00".repeat(123)).fromHex(), version).decode()
-//                            .replace("\u0000", "").dropLast(1) + "?..."
             }
 
             val d = decrypt(c)

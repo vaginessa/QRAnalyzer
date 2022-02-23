@@ -5,7 +5,6 @@ import javax.crypto.Cipher
 import javax.crypto.SecretKeyFactory
 import javax.crypto.spec.DESKeySpec
 
-
 private const val IV = "0000000000000000"
 private const val DEFAULT_KEY = "0123456789ABCDEF"
 
@@ -21,7 +20,12 @@ internal fun String.fromHex(): ByteArray {
         .toByteArray()
 }
 
-class SQRCDecoder(private val rawBytes: ByteArray, private val KEY: String = DEFAULT_KEY) {
+class SQRCDecoder(
+    private val rawBytes: ByteArray,
+    private val version: Int,
+    private val KEY: String = DEFAULT_KEY,
+    private val startIndex: Int = 0
+) {
     private val rawBytesHex = rawBytes.toHex()
 
     private val cipher: Cipher = Cipher.getInstance("DES/CBC/NoPadding")
@@ -39,17 +43,19 @@ class SQRCDecoder(private val rawBytes: ByteArray, private val KEY: String = DEF
     }
 
     fun decode(): String? {
-        try {
-            val l = lenOfSQRC() ?: return null
-            val c = coreOfSQRC(l) ?: return null
+        val ls = lensOfSQRC()
+        for ((len, index) in ls) {
+            val c = coreOfSQRC(len, index)
+
             if (c.size % 8 != 0) {
                 // Provisional
-                val h = c.toHex()
-                val cutLen = h.length / 16 * 16
-                val d = decrypt(h.substring(0, cutLen).fromHex())
-                return "[Residual (Provisional):Incomplete, No Check]\n"+QRDecoder.decode(
-                    (d.toHex() + "00".repeat(123)).fromHex()
-                ).replace("\u0000", "").dropLast(1) + "?..."
+                continue
+//                val h = c.toHex()
+//                val cutLen = h.length / 16 * 16
+//                val d = decrypt(h.substring(0, cutLen).fromHex())
+//                return "[Residual (Provisional):Incomplete, No Check]\n" +
+//                        QRDecoder((d.toHex() + "00".repeat(123)).fromHex(), version).decode()
+//                            .replace("\u0000", "").dropLast(1) + "?..."
             }
 
             val d = decrypt(c)
@@ -64,53 +70,46 @@ class SQRCDecoder(private val rawBytes: ByteArray, private val KEY: String = DEF
             if (Integer.parseInt(h.substring(h.length - 4), 16) !=
                 swap(crc16.value.toInt())
             ) {
-                throw RuntimeException("checksum error")
+//                    throw RuntimeException("checksum error")
+                // checksum error
+                continue
             }
 
-            return QRDecoder.decode(h.substring(0, h.length - 4).fromHex())
-        } catch (e: Exception) {
-            return null
+            return QRDecoder(h.substring(0, h.length - 4).fromHex(), version).decode()
         }
+        return null
     }
 
-    private fun lenOfSQRC(): Int? {
-        var i = -1
-        while (true) {
+    private fun lensOfSQRC(): Array<Pair<Int, Int>> {
+        var lens = emptyArray<Pair<Int, Int>>()
+
+        var i = startIndex - 1
+        do {
             i = rawBytesHex.indexOf("6", i + 1)
-            if (i == -1) {
-                break
-            }
 
             val j = i + 1
 
             try {
                 val l = Integer.parseInt(rawBytesHex.substring(j, j + 2), 16)
                 if (rawBytesHex[j + 2 + l * 2] == '0') {
-                    return l
+                    lens += l * 2 to j + 2
                 }
                 val ll = Integer.parseInt(rawBytesHex.substring(j, j + 3), 16)
                 if (rawBytesHex.length >= j + 2 + ll * 2) {
-                    return ll
+                    lens += ll * 2 to j + 3
                 }
             } catch (e: StringIndexOutOfBoundsException) {
                 /* DO NOTHING */
             }
-        }
+        } while (i != -1)
 
-        return null
+        return lens
     }
 
-    private fun coreOfSQRC(len: Int): ByteArray? {
+    private fun coreOfSQRC(len: Int, index: Int): ByteArray {
         check(len in 1..0xFFF)
 
-        val rawRegex = if (len <= 0xFF) {
-            "6%02x(.{%d})0".format(len, len * 2)
-        } else {
-            "6%03x(.{%d})".format(len, len * 2)
-        }
-        val regex = Regex(rawRegex)
-        val find = regex.find(rawBytes.toHex())
-        return find?.groupValues?.get(1)?.fromHex()
+        return rawBytesHex.slice(index until index + len).fromHex()
     }
 
     private fun decrypt(c: ByteArray): ByteArray {
@@ -119,6 +118,6 @@ class SQRCDecoder(private val rawBytes: ByteArray, private val KEY: String = DEF
     }
 
     fun isSQRC(): Boolean {
-        return lenOfSQRC() != null
+        return lensOfSQRC().isNotEmpty()
     }
 }

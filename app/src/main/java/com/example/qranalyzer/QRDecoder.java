@@ -8,6 +8,8 @@ public class QRDecoder {
     private final byte[] rawBytes;
     private final int version;
     private String hexContents = "";
+    private boolean hasResidualData = false;
+    private int end_index = -1;
     private static final int MODE_LENGTH = 4;
     private static final char[] ALPHANUMERIC_CHARS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:".toCharArray();
 
@@ -103,6 +105,14 @@ public class QRDecoder {
 
     public String getHexContents() {
         return this.hexContents;
+    }
+
+    public boolean getHasResidualData() {
+        return this.hasResidualData;
+    }
+
+    public int getEndIndex() {
+        return this.end_index;
     }
 
     private int getLengthOfLength(String mode) {
@@ -222,6 +232,9 @@ public class QRDecoder {
                         buf[j] = (byte) Integer.parseInt(b.substring(i, i + 8), 2);
                         i += 8;
                         hexContents.append(String.format(Locale.US, "%02x", buf[j]));
+                        if (j > 0 && buf[j - 1] == (byte) 0x00) {
+                            hasResidualData = true;
+                        }
                     }
                     try {
                         contents.append(new String(buf, "Shift-JIS"));
@@ -263,6 +276,8 @@ public class QRDecoder {
         if (b.startsWith("0100")) {
             this.hexContents = hexContents.toString();
         }
+
+        end_index = i / 8;
 
         return contents.toString();
     }

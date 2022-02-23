@@ -70,7 +70,6 @@ class SQRCDecoder(
             if (Integer.parseInt(h.substring(h.length - 4), 16) !=
                 swap(crc16.value.toInt())
             ) {
-//                    throw RuntimeException("checksum error")
                 // checksum error
                 continue
             }

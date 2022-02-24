@@ -12,7 +12,11 @@ analyze QR code
 
 ## Show Hidden Data
 
+[SQRC](https://www.denso-wave.com/en/system/qr/product/sqrc.html)
+
 ![sc2_en](img/sc2_en.png)
+
+[SQRC](https://www.denso-wave.com/ja/system/qr/product/sqrc.html)
 
 ![sc2_ja](img/sc2_ja.png)
 

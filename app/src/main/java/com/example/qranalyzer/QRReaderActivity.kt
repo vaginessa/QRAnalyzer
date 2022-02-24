@@ -68,7 +68,7 @@ class QRReaderActivity : AppCompatActivity() {
             }
 
         } catch (e: Exception) {
-            resultMessage += e.printStackTrace()
+            resultMessage += e.stackTraceToString()
         }
 
         val intent = Intent(this, ResultActivity::class.java)

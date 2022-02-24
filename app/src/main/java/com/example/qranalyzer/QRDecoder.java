@@ -10,6 +10,7 @@ public class QRDecoder {
     private String hexContents = "";
     private boolean hasResidualData = false;
     private String residualData = "";
+    private String hiddenData = "";
     private int end_index = -1;
     private static final int MODE_LENGTH = 4;
     private static final char[] ALPHANUMERIC_CHARS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:".toCharArray();
@@ -116,6 +117,14 @@ public class QRDecoder {
         return this.residualData;
     }
 
+    public boolean getHasHiddenData() {
+        return !this.hiddenData.equals("");
+    }
+
+    public String getHiddenData() {
+        return this.hiddenData;
+    }
+
     public int getEndIndex() {
         return this.end_index;
     }
@@ -180,6 +189,7 @@ public class QRDecoder {
         try {
             return this._decode();
         } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
     }
@@ -282,12 +292,45 @@ public class QRDecoder {
             }
         }
 
+        while (i % 8 != 0) {
+            i++;
+        }
+        int i_h = i / 8;
+
+        int j_h = rawBytes.length;
+        j_h--;
+        boolean flag = rawBytes[j_h] == (byte) 0x11;
+        if (flag || rawBytes[j_h] == (byte) 0xec) {
+            j_h--;
+            while (j_h > 0) {
+                if (flag) {
+                    if (rawBytes[j_h] != (byte) 0xec) {
+                        break;
+                    }
+                } else {
+                    if (rawBytes[j_h] != (byte) 0x11) {
+                        break;
+                    }
+                }
+                flag = !flag;
+                j_h--;
+            }
+        }
+
+        StringBuilder hiddenData = new StringBuilder();
+        for (; i_h <= j_h; i_h++) {
+            String h = String.format(Locale.US, "%02x", this.rawBytes[i_h]);
+            hiddenData.append(h);
+        }
+
         // all data 8-bit
         if (b.startsWith("0100")) {
             this.hexContents = hexContents.toString();
         }
 
         this.residualData = residualData.toString();
+
+        this.hiddenData = hiddenData.toString();
 
         end_index = i / 8;
 

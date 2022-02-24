@@ -14,6 +14,8 @@
     <string name="hex_contents">Hex内容</string>
     <string name="there_is_residual_data">残渣データが存在します。</string>
     <string name="residual_data">残渣データ</string>
+    <string name="there_is_hidden_data">秘匿データが存在します。</string>
+    <string name="hidden_data">秘匿データ</string>
     <string name="it_is_an_sqrc">これはSQRCです。</string>
     <string name="decoded_contents">【デコード内容】</string>
 </resources>

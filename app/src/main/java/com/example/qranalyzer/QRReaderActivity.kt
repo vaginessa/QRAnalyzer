@@ -67,6 +67,12 @@ class QRReaderActivity : AppCompatActivity() {
                 resultMessage += "\n${getString(R.string.residual_data)}: ${qrDecoder.residualData}\n"
             }
 
+            // hidden data
+            if (qrDecoder.hasHiddenData) {
+                resultMessage += "\n${getString(R.string.there_is_hidden_data)}\n"
+                resultMessage += "\n${getString(R.string.hidden_data)}: ${qrDecoder.hiddenData}\n"
+            }
+
         } catch (e: Exception) {
             resultMessage += e.stackTraceToString()
         }

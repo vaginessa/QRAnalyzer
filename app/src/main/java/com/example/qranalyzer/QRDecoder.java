@@ -9,6 +9,7 @@ public class QRDecoder {
     private final int version;
     private String hexContents = "";
     private boolean hasResidualData = false;
+    private String residualData = "";
     private int end_index = -1;
     private static final int MODE_LENGTH = 4;
     private static final char[] ALPHANUMERIC_CHARS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:".toCharArray();
@@ -111,6 +112,10 @@ public class QRDecoder {
         return this.hasResidualData;
     }
 
+    public String getResidualData() {
+        return this.residualData;
+    }
+
     public int getEndIndex() {
         return this.end_index;
     }
@@ -184,6 +189,7 @@ public class QRDecoder {
         int i = 0;
         StringBuilder contents = new StringBuilder();
         StringBuilder hexContents = new StringBuilder();
+        StringBuilder residualData = new StringBuilder();
         while (i < b.length() - 8 * 2) {
             String mode = b.substring(i, i + MODE_LENGTH);
             i += MODE_LENGTH;
@@ -231,9 +237,13 @@ public class QRDecoder {
                     for (int j = 0; j < len; j++) {
                         buf[j] = (byte) Integer.parseInt(b.substring(i, i + 8), 2);
                         i += 8;
-                        hexContents.append(String.format(Locale.US, "%02x", buf[j]));
+                        String h = String.format(Locale.US, "%02x", buf[j]);
+                        hexContents.append(h);
                         if (j > 0 && buf[j - 1] == (byte) 0x00) {
                             hasResidualData = true;
+                        }
+                        if (hasResidualData) {
+                            residualData.append(h);
                         }
                     }
                     try {
@@ -276,6 +286,8 @@ public class QRDecoder {
         if (b.startsWith("0100")) {
             this.hexContents = hexContents.toString();
         }
+
+        this.residualData = residualData.toString();
 
         end_index = i / 8;
 

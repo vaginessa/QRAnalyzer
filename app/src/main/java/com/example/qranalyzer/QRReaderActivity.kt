@@ -61,8 +61,10 @@ class QRReaderActivity : AppCompatActivity() {
                 resultMessage += "\n${getString(R.string.hex_contents)}: ${qrDecoder.hexContents}\n"
             }
 
+            // residual data
             if (qrDecoder.hasResidualData) {
                 resultMessage += "\n${getString(R.string.there_is_residual_data)}\n"
+                resultMessage += "\n${getString(R.string.residual_data)}: ${qrDecoder.residualData}\n"
             }
 
         } catch (e: Exception) {

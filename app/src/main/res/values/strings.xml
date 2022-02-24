@@ -12,6 +12,7 @@
     <string name="raw_data">Raw Data</string>
     <string name="hex_contents">Hex Contents</string>
     <string name="there_is_residual_data">There is residual data.</string>
+    <string name="residual_data">Residual Data</string>
     <string name="it_is_an_sqrc">It is an SQRC.</string>
     <string name="decoded_contents">[Decoded Contents]</string>
 </resources>

@@ -16,6 +16,7 @@
     <string name="there_is_hidden_data">There is hidden data.</string>
     <string name="hidden_data">Hidden Data</string>
     <string name="it_is_an_sqrc">It is an SQRC.</string>
-    <string name="decoded_contents">[Decoded Contents]</string>
+    <string name="decrypting_failed">decrypting failed</string>
+    <string name="decrypted_contents">[Decrypted Contents]</string>
     <string name="settings">Settings</string>
 </resources>

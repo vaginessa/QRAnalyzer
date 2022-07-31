@@ -80,9 +80,9 @@ class QRReaderActivity : AppCompatActivity() {
                 val decodedContents = sqrcDecoder.decode()
 
                 resultMessage += "\n" + if (decodedContents != null) {
-                    getString(R.string.decoded_contents) + "\n" + decodedContents
+                    getString(R.string.decrypted_contents) + "\n" + decodedContents
                 } else {
-                    getString(R.string.decoding_failed)
+                    getString(R.string.decrypting_failed)
                 } + "\n"
             }
 

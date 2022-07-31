@@ -18,4 +18,5 @@
     <string name="hidden_data">秘匿データ</string>
     <string name="it_is_an_sqrc">これはSQRCです。</string>
     <string name="decoded_contents">【デコード内容】</string>
+    <string name="settings">設定</string>
 </resources>

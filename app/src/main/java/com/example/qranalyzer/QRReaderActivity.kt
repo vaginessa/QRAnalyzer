@@ -75,16 +75,23 @@ class QRReaderActivity : AppCompatActivity() {
 
             val sp = PreferenceManager.getDefaultSharedPreferences(this)
 
-            var i = 1
+            var i = 0
+
+            val regex = Regex("[0-9A-F]{16}", RegexOption.IGNORE_CASE)
 
             if (SQRCDecoder(result.rawBytes, qrDecoder.version, startIndex = endIndex).isSQRC()) {
                 resultMessage += "\n${getString(R.string.it_is_an_sqrc)}\n"
 
                 while (true) {
+                    i++
                     val key = sp.getString("key$i", null)
                     if (key == null) {
                         resultMessage += "\n" + getString(R.string.decrypting_failed) + "\n"
                         break
+                    }
+
+                    if (!regex.containsMatchIn(key)) {
+                        continue
                     }
 
                     val sqrcDecoder =
@@ -96,7 +103,6 @@ class QRReaderActivity : AppCompatActivity() {
                         resultMessage += "\n" + getString(R.string.decrypted_contents) + "\n" + decodedContents + "\n"
                         break
                     }
-                    i++
                 }
             }
 

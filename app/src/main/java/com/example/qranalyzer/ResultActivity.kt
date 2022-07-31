@@ -1,6 +1,7 @@
 package com.example.qranalyzer
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.Vibrator
 import android.view.Menu
@@ -35,8 +36,8 @@ class ResultActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menuItemSettings -> {
-//                val intent = Intent(this, SettingsActivity::class.java)
-//                startActivity(intent)
+                val intent = Intent(this, SettingsActivity::class.java)
+                startActivity(intent)
                 true
             }
             else -> super.onOptionsItemSelected(item)

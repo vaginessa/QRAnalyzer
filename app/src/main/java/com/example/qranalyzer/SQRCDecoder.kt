@@ -45,14 +45,15 @@ class SQRCDecoder(
     fun decode(): String? {
         val ls = lensOfSQRC()
         for ((len, index) in ls) {
-            val c = coreOfSQRC(len, index)
+            val c = coreOfSQRC(len, index).let { it.take(it.size / 8 * 8).toByteArray() }
 
             if (c.size % 8 != 0) {
                 // Unanalyzed
-                continue
+                // ! continue
             }
 
             val d = decrypt(c)
+
             val h = d.toHex()
 
             val crc16 = CRC16()
@@ -65,10 +66,13 @@ class SQRCDecoder(
                 swap(crc16.value.toInt())
             ) {
                 // checksum error
-                continue
+                // ! continue
             }
 
-            return QRDecoder(h.substring(0, h.length - 4).fromHex(), version).decode()
+            return QRDecoder(
+                (h.substring(0, h.length - 4) + "00".repeat(100)).fromHex(),
+                version
+            ).decode() + "..."
         }
         return null
     }

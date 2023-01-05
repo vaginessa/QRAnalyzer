@@ -34,7 +34,7 @@ class QRReaderActivity : AppCompatActivity() {
             setDesiredBarcodeFormats(ScanOptions.QR_CODE)
             setOrientationLocked(false)
             setCameraId(0)
-            captureActivity = CaptureActivityPortrait::class.java
+            captureActivity = ToolbarCaptureActivity::class.java
         }
 
         qrLauncher.launch(options)

@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CaptureActivityPortrait"
+            android:name=".ToolbarCaptureActivity"
             android:screenOrientation="fullSensor"
             android:stateNotNeeded="true"
             android:theme="@style/zxing_CaptureTheme"

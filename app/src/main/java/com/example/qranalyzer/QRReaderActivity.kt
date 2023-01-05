@@ -2,6 +2,7 @@ package com.example.qranalyzer
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.PreferenceManager
 import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanIntentResult
 import com.journeyapps.barcodescanner.ScanOptions
@@ -72,18 +73,37 @@ class QRReaderActivity : AppCompatActivity() {
 
             val endIndex = qrDecoder.endIndex
 
-            val sqrcDecoder = SQRCDecoder(result.rawBytes, qrDecoder.version, startIndex = endIndex)
+            val sp = PreferenceManager.getDefaultSharedPreferences(this)
 
-            if (sqrcDecoder.isSQRC()) {
+            var i = 0
+
+            val regex = Regex("[0-9A-F]{16}", RegexOption.IGNORE_CASE)
+
+            if (SQRCDecoder(result.rawBytes, qrDecoder.version, startIndex = endIndex).isSQRC()) {
                 resultMessage += "\n${getString(R.string.it_is_an_sqrc)}\n"
 
-                val decodedContents = sqrcDecoder.decode()
+                while (true) {
+                    i++
+                    val key = sp.getString("key$i", null)
+                    if (key == null) {
+                        resultMessage += "\n" + getString(R.string.decrypting_failed) + "\n"
+                        break
+                    }
 
-                resultMessage += "\n" + if (decodedContents != null) {
-                    getString(R.string.decoded_contents) + "\n" + decodedContents
-                } else {
-                    getString(R.string.decoding_failed)
-                } + "\n"
+                    if (!regex.containsMatchIn(key)) {
+                        continue
+                    }
+
+                    val sqrcDecoder =
+                        SQRCDecoder(result.rawBytes, qrDecoder.version, key, startIndex = endIndex)
+
+                    val decodedContents = sqrcDecoder.decode()
+
+                    if (decodedContents != null) {
+                        resultMessage += "\n" + getString(R.string.decrypted_contents) + "\n" + decodedContents + "\n"
+                        break
+                    }
+                }
             }
 
         } catch (e: Exception) {

@@ -7,7 +7,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.qranalyzer"
+        applicationId "tech.oliet.qranalyzer"
         minSdk 24
         targetSdk 33
         versionCode 4
@@ -29,7 +29,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    namespace 'com.example.qranalyzer'
+    namespace 'tech.oliet.qranalyzer'
 }
 
 dependencies {

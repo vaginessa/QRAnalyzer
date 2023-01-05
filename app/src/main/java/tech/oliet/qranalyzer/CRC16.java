@@ -24,7 +24,7 @@
  * 告されていたとしても一切の責任を負わないものとする。
  */
 
-package com.example.qranalyzer;
+package tech.oliet.qranalyzer;
 
 import java.util.zip.Checksum;
 

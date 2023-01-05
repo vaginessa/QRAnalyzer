@@ -1,4 +1,4 @@
-package com.example.qranalyzer
+package tech.oliet.qranalyzer
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,7 +7,7 @@ import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanIntentResult
 import com.journeyapps.barcodescanner.ScanOptions
 
-internal const val RESULT_MESSAGE = "com.example.qranalyzer.RESULT_MESSAGE"
+internal const val RESULT_MESSAGE = "tech.oliet.qranalyzer.RESULT_MESSAGE"
 
 class QRReaderActivity : AppCompatActivity() {
     private val qrLauncher = registerForActivityResult(

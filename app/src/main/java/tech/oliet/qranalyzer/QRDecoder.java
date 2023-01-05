@@ -1,4 +1,4 @@
-package com.example.qranalyzer;
+package tech.oliet.qranalyzer;
 
 
 import java.io.UnsupportedEncodingException;

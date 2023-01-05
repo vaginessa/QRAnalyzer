@@ -1,4 +1,4 @@
-package com.example.qranalyzer
+package tech.oliet.qranalyzer
 
 import android.content.Context
 import android.content.Intent

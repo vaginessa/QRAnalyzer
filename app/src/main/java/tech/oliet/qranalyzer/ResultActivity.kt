@@ -25,11 +25,11 @@ class ResultActivity : AppCompatActivity() {
 
         vibrate(300)
 
-        val constraintLayout = findViewById<ConstraintLayout>(R.id.constraintLayoutResult)
+        val constraintLayoutResult = findViewById<ConstraintLayout>(R.id.constraintLayoutResult)
 
         val progressBar = ProgressBar(this)
 
-        constraintLayout.addView(
+        constraintLayoutResult.addView(
             progressBar, ActionBar.LayoutParams(
                 ActionBar.LayoutParams.MATCH_PARENT,
                 ActionBar.LayoutParams.MATCH_PARENT
@@ -43,7 +43,7 @@ class ResultActivity : AppCompatActivity() {
                 val textViewResult = findViewById<TextView>(R.id.textViewResult)
                 textViewResult.text = resultMessage
 
-                constraintLayout.removeView(progressBar)
+                constraintLayoutResult.removeView(progressBar)
             }
         }
 

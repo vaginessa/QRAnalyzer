@@ -34,22 +34,25 @@ class QRReaderActivity : AppCompatActivity() {
             } + "\n"
 
             // error collection level
-            resultMessage += "${getString(R.string.error_correction_level)}: ${result.errorCorrectionLevel} (" +
-                    "%d%% ".format(
-                        when (result.errorCorrectionLevel) {
-                            "L" -> 7
-                            "M" -> 15
-                            "Q" -> 25
-                            "H" -> 30
-                            else -> -1
-                        }
-                    ) + getString(R.string.restoration_ability) + ")\n"
+            resultMessage +=
+                "${getString(R.string.error_correction_level)}: ${result.errorCorrectionLevel} " +
+                        "(%d%% ${getString(R.string.restoration_ability)})\n".format(
+                            when (result.errorCorrectionLevel) {
+                                "L" -> 7
+                                "M" -> 15
+                                "Q" -> 25
+                                "H" -> 30
+                                else -> throw RuntimeException("Unknown Error Correction Level")
+                            }
+                        )
 
             val cellSize = qrDecoder.calculateCellSize()
 
+            // version
+            resultMessage += "${getString(R.string.version)}: ${qrDecoder.version}\n"
+
             // cell size
-            resultMessage += "${getString(R.string.version)}: ${qrDecoder.version}\n" +
-                    "${getString(R.string.cell_size)}: ${cellSize}x${cellSize}\n"
+            resultMessage += "${getString(R.string.cell_size)}: ${cellSize}x${cellSize}\n"
 
             // raw data
             resultMessage += "${getString(R.string.raw_data)}: ${result.rawBytes.toHex()}\n"
@@ -85,6 +88,7 @@ class QRReaderActivity : AppCompatActivity() {
                 while (true) {
                     i++
                     val key = sp.getString("key$i", null)
+                    // no more keys
                     if (key == null) {
                         resultMessage += "\n" + getString(R.string.decrypting_failed) + "\n"
                         break
@@ -107,11 +111,14 @@ class QRReaderActivity : AppCompatActivity() {
             }
 
         } catch (e: Exception) {
-            resultMessage += e.stackTraceToString()
+            resultMessage += "\n" + getString(R.string.exception_occurred)
+            resultMessage += "\n\n" + e.stackTraceToString()
         }
 
-        val intent = Intent(this, ResultActivity::class.java)
-        intent.putExtra(RESULT_MESSAGE, resultMessage)
+        val intent = Intent(this, ResultActivity::class.java).apply {
+            putExtra(RESULT_MESSAGE, resultMessage)
+        }
+
         startActivity(intent)
     }
 

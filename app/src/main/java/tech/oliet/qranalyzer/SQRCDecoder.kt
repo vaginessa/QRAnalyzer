@@ -4,6 +4,7 @@ import java.security.AlgorithmParameters
 import javax.crypto.Cipher
 import javax.crypto.SecretKeyFactory
 import javax.crypto.spec.DESKeySpec
+import kotlin.experimental.xor
 
 private const val IV = "0000000000000000"
 private const val DEFAULT_KEY = "0123456789ABCDEF"
@@ -15,9 +16,7 @@ internal fun ByteArray.toHex(): String =
 internal fun String.fromHex(): ByteArray {
     check(length % 2 == 0) { "Must have an even length" }
 
-    return chunked(2)
-        .map { it.toInt(16).toByte() }
-        .toByteArray()
+    return chunked(2).map { it.toInt(16).toByte() }.toByteArray()
 }
 
 class SQRCDecoder(
@@ -28,7 +27,7 @@ class SQRCDecoder(
 ) {
     private val rawBytesHex = rawBytes.toHex()
 
-    private val cipher: Cipher = Cipher.getInstance("DES/CBC/NoPadding")
+    private val cipher = Cipher.getInstance("DES/CBC/NoPadding")
 
     private val theIV: ByteArray = IV.fromHex()
     private val theKEY: ByteArray = KEY.fromHex()
@@ -47,11 +46,6 @@ class SQRCDecoder(
         for ((len, index) in ls) {
             val c = coreOfSQRC(len, index)
 
-            if (c.size % 8 != 0) {
-                // Unanalyzed
-                continue
-            }
-
             val d = decrypt(c)
             val h = d.toHex()
 
@@ -61,9 +55,7 @@ class SQRCDecoder(
 
             val swap = { crc: Int -> (crc % 0x100) * 0x100 + (crc / 0x100) }
 
-            if (Integer.parseInt(h.substring(h.length - 4), 16) !=
-                swap(crc16.value.toInt())
-            ) {
+            if (Integer.parseInt(h.substring(h.length - 4), 16) != swap(crc16.value.toInt())) {
                 // checksum error
                 continue
             }
@@ -106,8 +98,21 @@ class SQRCDecoder(
     }
 
     private fun decrypt(c: ByteArray): ByteArray {
-        check(c.size % 8 == 0)
-        return cipher.doFinal(c)
+        val headBlocks = c.slice(0 until (c.size / 8 * 8)).toByteArray()
+        val lastBlock = c.slice((c.size / 8 - 1) * 8 until (c.size / 8 * 8)).toByteArray()
+        val residual = c.slice((c.size / 8 * 8) until c.size).toByteArray()
+
+        val d = cipher.doFinal(headBlocks)
+
+        val des = DES()
+        des.crypt(lastBlock, theKEY, "decrypt")
+
+        val a = des.a
+        for (i in residual.indices) {
+            residual[i] = residual[i] xor a[i] xor lastBlock[i]
+        }
+
+        return d + residual
     }
 
     fun isSQRC(): Boolean {

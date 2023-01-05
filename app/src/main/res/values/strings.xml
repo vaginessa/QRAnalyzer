@@ -20,6 +20,7 @@
     <string name="decrypting_failed">decrypting failed</string>
     <string name="decrypted_contents">[Decrypted Contents]</string>
     <string name="exception_occurred">Exception occurred</string>
+    <string name="history">History</string>
     <string name="settings">Settings</string>
     <string name="analyzing">Analyzing…</string>
 </resources>

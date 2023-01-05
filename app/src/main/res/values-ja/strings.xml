@@ -21,6 +21,7 @@
     <string name="decrypting_failed">復号失敗</string>
     <string name="decrypted_contents">【復号内容】</string>
     <string name="exception_occurred">例外が発生しました</string>
+    <string name="history">履歴</string>
     <string name="settings">設定</string>
     <string name="analyzing">解析中…</string>
 </resources>

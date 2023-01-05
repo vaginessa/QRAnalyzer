@@ -118,10 +118,13 @@ class QRReaderActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        val options = ScanOptions()
-        options.setDesiredBarcodeFormats(ScanOptions.QR_CODE)
-        options.setOrientationLocked(false)
-        options.setBeepEnabled(false)
+        val options = ScanOptions().apply {
+            setPrompt(getString(R.string.prompt))
+            setDesiredBarcodeFormats(ScanOptions.QR_CODE)
+            setOrientationLocked(false)
+            setCameraId(0)
+            captureActivity = CaptureActivityPortrait::class.java
+        }
 
         qrLauncher.launch(options)
     }

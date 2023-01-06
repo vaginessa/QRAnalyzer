@@ -14,7 +14,16 @@
         android:layout_alignParentTop="true"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        android:title="@string/app_name" />
+        android:title="@string/app_name">
+
+        <Button
+            android:id="@+id/buttonHistories"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:text="@string/histories" />
+
+    </android.widget.Toolbar>
 
     <com.journeyapps.barcodescanner.DecoratedBarcodeView
         android:id="@+id/zxing_barcode_scanner"

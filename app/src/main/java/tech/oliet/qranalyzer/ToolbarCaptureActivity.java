@@ -35,6 +35,11 @@ public class ToolbarCaptureActivity extends CaptureActivity {
         capture = new CaptureManager(this, barcodeScannerView);
         capture.initializeFromIntent(getIntent(), savedInstanceState);
         capture.decode();
+
+        findViewById(R.id.buttonHistories).setOnClickListener(v -> {
+            Intent intent = new Intent(this, HistoriesActivity.class);
+            startActivity(intent);
+        });
     }
 
     @Override
@@ -74,11 +79,6 @@ public class ToolbarCaptureActivity extends CaptureActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menuItemHistories) {
-            Intent intent = new Intent(this, HistoriesActivity.class);
-            startActivity(intent);
-            return true;
-        }
         if (item.getItemId() == R.id.menuItemSettings) {
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);

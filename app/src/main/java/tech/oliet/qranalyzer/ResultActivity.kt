@@ -68,11 +68,6 @@ class ResultActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.menuItemHistories -> {
-                val intent = Intent(this, HistoriesActivity::class.java)
-                startActivity(intent)
-                true
-            }
             R.id.menuItemSettings -> {
                 val intent = Intent(this, SettingsActivity::class.java)
                 startActivity(intent)

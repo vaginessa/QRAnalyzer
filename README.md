@@ -1,8 +1,10 @@
 # QRAnalyzer
 
-analyze QR code
+analyze QR code®
 
 ![QR_QRAnalyzer.png](img/QR_QRAnalyzer.png)
+
+# Features
 
 ## Show Details
 
@@ -12,14 +14,16 @@ analyze QR code
 
 ## Show Hidden Data
 
-[SQRC](https://www.denso-wave.com/en/system/qr/product/sqrc.html)
+[SQRC®](https://www.denso-wave.com/en/system/qr/product/sqrc.html)
 
 ![sc2_en](img/sc2_en.png)
 
-[SQRC](https://www.denso-wave.com/ja/system/qr/product/sqrc.html)
+[SQRC®](https://www.denso-wave.com/ja/system/qr/product/sqrc.html)
 
 ![sc2_ja](img/sc2_ja.png)
 
 # Licenses
 
 See [licenses.xml](app/src/main/res/values/licenses.xml)
+
+QR code, SQRC are registered trademarks of DENSO WAVE INCORPORATED

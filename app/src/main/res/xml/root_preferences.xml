@@ -5,7 +5,12 @@
         app:key="vibration"
         app:title="@string/vibration" />
 
-    <PreferenceCategory app:title="@string/sqrc_encryption_keys">
+    <CheckBoxPreference
+        app:defaultValue="true"
+        app:key="sqrc_enabled"
+        app:title="@string/sqrc_enabled" />
+
+    <PreferenceCategory app:title="@string/encryption_keys">
         <EditTextPreference
             app:defaultValue="0123456789ABCDEF"
             app:key="key1"

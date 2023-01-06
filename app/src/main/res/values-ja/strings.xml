@@ -27,7 +27,8 @@
     <string name="analyzing">解析中…</string>
     <string name="vibration">バイブレーション</string>
     <string name="not_yet_implemented">未実装</string>
-    <string name="sqrc_encryption_keys">SQRC 暗号キー</string>
+    <string name="sqrc_enabled">SQRC有効</string>
+    <string name="encryption_keys">暗号キー</string>
     <string name="number_of_setting">設定数</string>
     <string name="key1">キー1</string>
     <string name="key2">キー2</string>

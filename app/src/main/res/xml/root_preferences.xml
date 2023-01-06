@@ -5,47 +5,47 @@
         app:key="vibration"
         app:title="@string/vibration" />
 
-    <PreferenceCategory app:title="SQRC">
+    <PreferenceCategory app:title="@string/sqrc_encryption_keys">
         <EditTextPreference
             app:defaultValue="0123456789ABCDEF"
             app:key="key1"
             app:selectable="false"
-            app:title="Key1"
+            app:title="@string/key1"
             app:useSimpleSummaryProvider="true" />
 
         <EditTextPreference
             app:key="key2"
-            app:title="Key2"
+            app:title="@string/key2"
             app:useSimpleSummaryProvider="true" />
 
         <EditTextPreference
             app:key="key3"
-            app:title="Key3"
+            app:title="@string/key3"
             app:useSimpleSummaryProvider="true" />
 
         <EditTextPreference
             app:key="key4"
-            app:title="Key4"
+            app:title="@string/key4"
             app:useSimpleSummaryProvider="true" />
 
         <EditTextPreference
             app:key="key5"
-            app:title="Key5"
+            app:title="@string/key5"
             app:useSimpleSummaryProvider="true" />
 
         <EditTextPreference
             app:key="key6"
-            app:title="Key6"
+            app:title="@string/key6"
             app:useSimpleSummaryProvider="true" />
 
         <EditTextPreference
             app:key="key7"
-            app:title="Key7"
+            app:title="@string/key7"
             app:useSimpleSummaryProvider="true" />
 
         <EditTextPreference
             app:key="key8"
-            app:title="Key8"
+            app:title="@string/key8"
             app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>

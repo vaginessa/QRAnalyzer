@@ -26,4 +26,14 @@
     <string name="analyzing">Analyzing…</string>
     <string name="vibration">Vibration</string>
     <string name="not_yet_implemented">not yet　implemented</string>
+    <string name="sqrc_encryption_keys">SQRC encryption keys</string>
+    <string name="number_of_setting">Number of setting</string>
+    <string name="key1">Key1</string>
+    <string name="key2">Key2</string>
+    <string name="key3">Key3</string>
+    <string name="key4">Key4</string>
+    <string name="key5">Key5</string>
+    <string name="key6">Key6</string>
+    <string name="key7">Key7</string>
+    <string name="key8">Key8</string>
 </resources>

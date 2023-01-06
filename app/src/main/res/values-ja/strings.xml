@@ -25,4 +25,5 @@
     <string name="settings">設定</string>
     <string name="licenses">許諾</string>
     <string name="analyzing">解析中…</string>
+    <string name="vibration">バイブレーション</string>
 </resources>

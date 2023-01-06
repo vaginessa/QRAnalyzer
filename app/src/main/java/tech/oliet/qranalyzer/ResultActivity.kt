@@ -3,6 +3,7 @@ package tech.oliet.qranalyzer
 import android.app.ActionBar
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -17,13 +18,19 @@ import androidx.preference.PreferenceManager
 import kotlin.concurrent.thread
 
 class ResultActivity : AppCompatActivity() {
+    private lateinit var sp: SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
 
+        sp = PreferenceManager.getDefaultSharedPreferences(this)
+
         val result = (intent.getSerializableExtra(RESULT) ?: return) as Result
 
-        vibrate(300)
+        if (sp.getBoolean("vibration", true)) {
+            vibrate(300)
+        }
 
         val constraintLayoutResult = findViewById<ConstraintLayout>(R.id.constraintLayoutResult)
 
@@ -71,7 +78,7 @@ class ResultActivity : AppCompatActivity() {
                 startActivity(intent)
                 true
             }
-            R.id.menuItemLicenses ->{
+            R.id.menuItemLicenses -> {
                 val intent = Intent(this, LicensesActivity::class.java)
                 startActivity(intent)
                 true
@@ -142,8 +149,6 @@ class ResultActivity : AppCompatActivity() {
             }
 
             val endIndex = qrDecoder.endIndex
-
-            val sp = PreferenceManager.getDefaultSharedPreferences(this)
 
             var i = 0
 

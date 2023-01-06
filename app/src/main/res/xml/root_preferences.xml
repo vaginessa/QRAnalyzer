@@ -1,5 +1,10 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <CheckBoxPreference
+        app:defaultValue="true"
+        app:key="vibration"
+        app:title="@string/vibration" />
+
     <PreferenceCategory app:title="SQRC">
         <EditTextPreference
             app:defaultValue="0123456789ABCDEF"

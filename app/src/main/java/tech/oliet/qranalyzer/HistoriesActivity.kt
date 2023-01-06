@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 class HistoriesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.history_activity)
+        setContentView(R.layout.activity_histories)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

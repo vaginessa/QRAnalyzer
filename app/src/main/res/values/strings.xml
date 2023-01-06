@@ -25,4 +25,5 @@
     <string name="licenses">License</string>
     <string name="analyzing">Analyzing…</string>
     <string name="vibration">Vibration</string>
+    <string name="not_yet_implemented">not yet　implemented</string>
 </resources>

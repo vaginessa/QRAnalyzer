@@ -26,4 +26,5 @@
     <string name="licenses">許諾</string>
     <string name="analyzing">解析中…</string>
     <string name="vibration">バイブレーション</string>
+    <string name="not_yet_implemented">未実装</string>
 </resources>

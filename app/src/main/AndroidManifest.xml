@@ -13,13 +13,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QRAnalyzer">
         <activity
-            android:name=".HistoryActivity"
+            android:name=".HistoriesActivity"
             android:exported="false"
-            android:label="@string/history" />
+            android:label="@string/histories" />
         <activity
             android:name=".SettingsActivity"
             android:exported="false"
             android:label="@string/settings" />
+        <activity
+            android:name=".LicensesActivity"
+            android:exported="false"
+            android:label="@string/licenses"
+            android:theme="@style/Theme.QRAnalyzer.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".ResultActivity"
             android:configChanges="orientation|screenSize"

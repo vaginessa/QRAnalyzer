@@ -20,6 +20,6 @@ analyze QR code
 
 ![sc2_ja](img/sc2_ja.png)
 
-# Using Component
+# Licenses
 
-[ZXing Android Embedded](https://github.com/journeyapps/zxing-android-embedded) Licensed under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+See [licenses.xml](app/src/main/res/values/licenses.xml)

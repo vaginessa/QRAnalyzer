@@ -74,13 +74,18 @@ public class ToolbarCaptureActivity extends CaptureActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menuItemHistory) {
-            Intent intent = new Intent(this, HistoryActivity.class);
+        if (item.getItemId() == R.id.menuItemHistories) {
+            Intent intent = new Intent(this, HistoriesActivity.class);
             startActivity(intent);
             return true;
         }
         if (item.getItemId() == R.id.menuItemSettings) {
             Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        if (item.getItemId() == R.id.menuItemLicenses) {
+            Intent intent = new Intent(this, LicensesActivity.class);
             startActivity(intent);
             return true;
         }

@@ -30,6 +30,9 @@ android {
         jvmTarget = '1.8'
     }
     namespace 'tech.oliet.qranalyzer'
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {

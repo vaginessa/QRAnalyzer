@@ -4,10 +4,13 @@ import android.app.ActionBar
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.os.VibrationEffect
 import android.os.Vibrator
+import android.os.VibratorManager
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ProgressBar
@@ -57,8 +60,14 @@ class ResultActivity : AppCompatActivity() {
     }
 
     private fun vibrate(milliseconds: Long) {
-        val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-        vibrator.vibrate(milliseconds)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            (getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager?)?.defaultVibrator?.vibrate(
+                VibrationEffect.createOneShot(milliseconds, VibrationEffect.DEFAULT_AMPLITUDE)
+            )
+        } else {
+            @Suppress("DEPRECATION")
+            (getSystemService(Context.VIBRATOR_SERVICE) as Vibrator?)?.vibrate(milliseconds)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

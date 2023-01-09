@@ -143,6 +143,10 @@ class ResultActivity : AppCompatActivity() {
                 resultMessage += "\n${getString(R.string.hidden_data)}: ${qrDecoder.hiddenData}\n"
             }
 
+            if (!sp.getBoolean("sqrc_enabled", false)) {
+                return resultMessage
+            }
+
             val endIndex = qrDecoder.endIndex
 
             var i = 0

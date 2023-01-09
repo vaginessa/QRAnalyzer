@@ -1,9 +1,11 @@
 package tech.oliet.qranalyzer
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import tech.oliet.qranalyzer.databinding.ActivityLicensesBinding
+
 
 class LicensesActivity : AppCompatActivity() {
 
@@ -17,9 +19,10 @@ class LicensesActivity : AppCompatActivity() {
 
         setSupportActionBar(findViewById(R.id.toolbar))
         binding.toolbarLayout.title = title
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, getString(R.string.not_yet_implemented), Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+        binding.fab.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse("https://github.com/OLIET2357/QRAnalyzer")
+            startActivity(intent)
         }
     }
 }

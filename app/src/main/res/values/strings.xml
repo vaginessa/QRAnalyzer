@@ -16,7 +16,7 @@
     <string name="residual_data">Residual Data</string>
     <string name="there_is_hidden_data">There is hidden data.</string>
     <string name="hidden_data">Hidden Data</string>
-    <string name="it_is_an_sqrc">It is an SQRC.</string>
+    <string name="it_is_an_sqrc">It is an SQRC®.</string>
     <string name="decrypting_failed">decrypting failed</string>
     <string name="decrypted_contents">[Decrypted Contents]</string>
     <string name="exception_occurred">Exception occurred</string>
@@ -26,7 +26,7 @@
     <string name="analyzing">Analyzing…</string>
     <string name="vibration">Vibration</string>
     <string name="not_yet_implemented">not yet implemented</string>
-    <string name="sqrc_enabled">SQRC enabled</string>
+    <string name="sqrc_enabled">SQRC® enabled</string>
     <string name="encryption_keys">encryption keys</string>
     <string name="number_of_setting">Number of setting</string>
     <string name="key1">Key1</string>

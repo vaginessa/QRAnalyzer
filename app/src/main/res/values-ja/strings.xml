@@ -26,7 +26,7 @@
     <string name="licenses">許諾</string>
     <string name="analyzing">解析中…</string>
     <string name="vibration">バイブレーション</string>
-    <string name="not_yet_implemented">未実装</string>
+    <string name="not_yet_implemented">未実装です</string>
     <string name="sqrc_enabled">SQRC有効</string>
     <string name="encryption_keys">暗号キー</string>
     <string name="number_of_setting">設定数</string>

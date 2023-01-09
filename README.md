@@ -1,6 +1,8 @@
+[日本語](README_JA.md)
+
 # QRAnalyzer
 
-analyze QR code®
+Analyze QR code®
 
 ![QR_QRAnalyzer.png](img/QR_QRAnalyzer.png)
 
@@ -8,22 +10,24 @@ analyze QR code®
 
 ## Show Details
 
-![sc_en](img/sc_en.png)
+Show QR code® details.
 
-![sc_ja](img/sc_ja.png)
+![sc_details](img/sc_details.png)
 
 ## Show Hidden Data
 
-[SQRC®](https://www.denso-wave.com/en/system/qr/product/sqrc.html)
+Show Hidden data in the QR code®.
 
-![sc2_en](img/sc2_en.png)
+This is the only third-party reader that can read [SQRC®](https://www.denso-wave.com/en/system/qr/product/sqrc.html)
 
-[SQRC®](https://www.denso-wave.com/ja/system/qr/product/sqrc.html)
+![sc_sqrc](img/sc_sqrc.png)
 
-![sc2_ja](img/sc2_ja.png)
+The SQRC® specifications are summarized in this article (Japanese).
+
+[SQRC® の読み方 - OLIET の自由帳](https://blog.oliet.tech/?p=107)
 
 # Licenses
 
 See [licenses.xml](app/src/main/res/values/licenses.xml)
 
-QR code, SQRC are registered trademarks of DENSO WAVE INCORPORATED
+QR code, SQRC are registered trademarks of DENSO WAVE INCORPORATED.

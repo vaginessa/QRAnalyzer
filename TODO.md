@@ -1,4 +1,4 @@
 # TODO
 
 - Histories
-- From an image
+- From an image -> uses-feature android:required="false"

@@ -10,8 +10,8 @@ android {
         applicationId "tech.oliet.qranalyzer"
         minSdk 24
         targetSdk 33
-        versionCode 5
-        versionName "2.0b"
+        versionCode 6
+        versionName "2.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

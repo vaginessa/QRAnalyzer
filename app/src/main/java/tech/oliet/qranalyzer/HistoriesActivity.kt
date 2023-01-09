@@ -11,6 +11,8 @@ class HistoriesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_histories)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         val linearLayoutHistory = findViewById<LinearLayout>(R.id.linearLayoutHistory)
         val textView1 = TextView(this)
         textView1.text = getString(R.string.not_yet_implemented)

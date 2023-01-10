@@ -170,7 +170,7 @@ class ResultActivity : AppCompatActivity() {
                     val key = sp.getString("key$i", null)
                     // no more keys
                     if (key == null) {
-                        resultMessage += "\n" + getString(R.string.decrypting_failed) + "\n"
+                        resultMessage += "\n" + getString(R.string.decryption_failed) + "\n"
                         break
                     }
 

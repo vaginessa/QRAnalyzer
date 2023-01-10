@@ -18,9 +18,9 @@
     <string name="there_is_hidden_data">秘匿データが存在します。</string>
     <string name="hidden_data">秘匿データ</string>
     <string name="it_is_an_sqrc">これはSQRC®です。</string>
-    <string name="decrypting_failed">復号失敗</string>
+    <string name="decryption_failed">復号に失敗しました。\nキーが異なります。</string>
     <string name="decrypted_contents">【復号内容】</string>
-    <string name="exception_occurred">例外が発生しました</string>
+    <string name="exception_occurred">例外が発生しました。</string>
     <string name="histories">履歴</string>
     <string name="settings">設定</string>
     <string name="licenses">許諾</string>

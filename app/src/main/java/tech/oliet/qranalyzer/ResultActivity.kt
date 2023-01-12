@@ -105,11 +105,9 @@ class ResultActivity : AppCompatActivity() {
             resultMessage += "${getString(R.string.details)}\n"
 
             // is decoding successful
-            resultMessage += if (result.contents == myContents) {
-                getString(R.string.decoding_succeeded)
-            } else {
-                getString(R.string.decoding_failed)
-            } + "\n"
+            if (result.contents == myContents) {
+                resultMessage += getString(R.string.decoding_succeeded) + "\n"
+            }
 
             // error collection level
             resultMessage +=

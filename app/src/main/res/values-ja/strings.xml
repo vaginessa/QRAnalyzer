@@ -5,8 +5,8 @@
     <string name="contents_begin">【内容開始】</string>
     <string name="contents_end">【内容終了】</string>
     <string name="details">【詳細】</string>
-    <string name="decoding_succeeded">デコード成功</string>
-    <string name="decoding_failed">デコード失敗</string>
+    <string name="decoding_succeeded">デコードに成功しました。</string>
+    <string name="decoding_failed">デコードに失敗しました。</string>
     <string name="error_correction_level">エラー訂正レベル</string>
     <string name="restoration_ability">復元能力</string>
     <string name="version">バージョン</string>

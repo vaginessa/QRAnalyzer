@@ -4,8 +4,8 @@
     <string name="contents_begin">[Contents begin]</string>
     <string name="contents_end">[Contents end]</string>
     <string name="details">[Details]</string>
-    <string name="decoding_succeeded">decoding succeeded</string>
-    <string name="decoding_failed">decoding failed</string>
+    <string name="decoding_succeeded">Decoding succeeded.</string>
+    <string name="decoding_failed">Decoding failed.</string>
     <string name="error_correction_level">Error Correction Level</string>
     <string name="restoration_ability">Restoration Ability</string>
     <string name="version">Version</string>

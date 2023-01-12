@@ -24,7 +24,7 @@ This is the only third-party reader that can read [SQRC®](https://www.denso-wav
 
 The SQRC® specifications are summarized in this article (Japanese).
 
-[SQRC® の読み方 - OLIET の自由帳](https://blog.oliet.tech/?p=107)
+[SQRC®の読み方 - OLIET の自由帳](https://blog.oliet.tech/?p=107)
 
 # Licenses
 

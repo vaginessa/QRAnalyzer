@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">QRアナライザ</string>
-    <string name="prompt">QRコードをスキャンします</string>
+    <string name="prompt">QRコード®をスキャンします</string>
     <string name="contents_begin">【内容開始】</string>
     <string name="contents_end">【内容終了】</string>
     <string name="details">【詳細】</string>

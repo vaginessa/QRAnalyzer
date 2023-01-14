@@ -80,11 +80,11 @@ class SQRCDecoder(
 
             try {
                 val l = Integer.parseInt(rawBytesHex.substring(j, j + 2), 16)
-                if (rawBytesHex[j + 2 + l * 2] == '0') {
+                if (l > 0 && rawBytesHex[j + 2 + l * 2] == '0') {
                     lens += l * 2 to j + 2
                 }
                 val ll = Integer.parseInt(rawBytesHex.substring(j, j + 3), 16)
-                if (rawBytesHex.length >= j + 2 + ll * 2) {
+                if (ll > 0 && rawBytesHex.length >= j + 2 + ll * 2) {
                     lens += ll * 2 to j + 3
                 }
             } catch (e: StringIndexOutOfBoundsException) {

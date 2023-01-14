@@ -85,7 +85,7 @@ public class QRDecoder {
                 {20528, 15936, 11408, 8768},
                 {21616, 16816, 12016, 9136},
                 {22496, 17728, 12656, 9776},
-                {23648, 18672, 13328, 1208},
+                {23648, 18672, 13328, 10208},
         };
 
         for (int version = 1; version <= 40; version++) {
@@ -330,9 +330,11 @@ public class QRDecoder {
 
         this.residualData = residualData.toString();
 
-        this.hiddenData = hiddenData.toString();
+        if (!hiddenData.toString().equals("00")) {
+            this.hiddenData = hiddenData.toString();
+        }
 
-        end_index = i / 8;
+        end_index = i / 4;
 
         return contents.toString();
     }

@@ -1,6 +1,12 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <CheckBoxPreference
+        app:defaultValue="false"
+        app:isPreferenceVisible="false"
+        app:key="beep"
+        app:title="@string/beep" />
+
+    <CheckBoxPreference
         app:defaultValue="true"
         app:key="vibration"
         app:title="@string/vibration" />

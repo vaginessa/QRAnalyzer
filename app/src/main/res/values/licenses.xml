@@ -16,18 +16,20 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License."
-        "\n\n"
+        "\n\n\n"
 
         "CRC16\n"
-        "Copyright (C) 2001-2002  Michel Ishizuka  All rights reserved.\n\n"
+        "Copyright (C) 2001-2002  Michel Ishizuka  All rights reserved."
+        "\n\n"
 
         "このソフトウェアは石塚美珠瑠によって無保証で提供され、特定の目的を達成できるという保証、商品価値が有るという保証にとどまらず、いかなる明示的および暗示的な保証もしない。石塚美珠瑠は このソフトウェアの使用による直接的、間接的、偶発的、特殊な、典型的な、あるいは必然的な損害(使用によるデータの損失、業務の中断や見込まれていた利益の遺失、代替製品もしくはサービスの導入費等が考えられるが、決してそれだけに限定されない損害)に対して、いかなる事態の原因となったとしても、契約上の責任や無過失責任を含む いかなる責任があろうとも、たとえそれが不正行為のためであったとしても、またはそのような損害の可能性が報告されていたとしても一切の責任を負わないものとする。"
-        "\n\n"
+        "\n\n\n"
 
         "DES Implementation In Java\n"
         "https://www.theinsanetechie.in/2014/06/des-implementation-in-java.html\n"
-        "Copyright (C) 2014 Dhanoop Bhaskar\n"
-        "\n\n"
-        "SQRCは(株)デンソーウェーブの登録商標です。"
+        "Copyright (C) 2014 Dhanoop Bhaskar"
+        "\n\n\n"
+        
+        "QRコード、SQRCは㈱デンソーウェーブの登録商標です。"
     </string>
 </resources>

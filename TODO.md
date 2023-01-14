@@ -4,3 +4,4 @@
 
 - Histories
 - From an image -> uses-feature android:required="false"
+- Share button

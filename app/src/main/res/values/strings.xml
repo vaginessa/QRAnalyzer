@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">QRAnalyzer</string>
-    <string name="prompt">Scan a QR code</string>
+    <string name="prompt">Scan a QR code®</string>
     <string name="contents_begin">[Contents begin]</string>
     <string name="contents_end">[Contents end]</string>
     <string name="details">[Details]</string>
-    <string name="decoding_succeeded">decoding succeeded</string>
-    <string name="decoding_failed">decoding failed</string>
+    <string name="decoding_succeeded">Decoding succeeded.</string>
+    <string name="decoding_failed">Decoding failed.</string>
     <string name="error_correction_level">Error Correction Level</string>
     <string name="restoration_ability">Restoration Ability</string>
     <string name="version">Version</string>
@@ -17,13 +17,14 @@
     <string name="there_is_hidden_data">There is hidden data.</string>
     <string name="hidden_data">Hidden Data</string>
     <string name="it_is_an_sqrc">It is an SQRC®.</string>
-    <string name="decrypting_failed">decrypting failed</string>
+    <string name="decryption_failed">Decryption failed.\nThe key might be wrong.</string>
     <string name="decrypted_contents">[Decrypted Contents]</string>
-    <string name="exception_occurred">Exception occurred</string>
-    <string name="histories">History</string>
+    <string name="exception_occurred">Exception occurred.</string>
+    <string name="histories">Histories</string>
     <string name="settings">Settings</string>
-    <string name="licenses">License</string>
+    <string name="licenses">Licenses</string>
     <string name="analyzing">Analyzing…</string>
+    <string name="beep">Beep</string>
     <string name="vibration">Vibration</string>
     <string name="not_yet_implemented">not yet implemented</string>
     <string name="sqrc_enabled">SQRC® enabled</string>

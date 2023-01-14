@@ -27,6 +27,8 @@ class ResultActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         sp = PreferenceManager.getDefaultSharedPreferences(this)
 
         val result = (intent.getSerializableExtra(RESULT) ?: return) as Result
@@ -87,6 +89,10 @@ class ResultActivity : AppCompatActivity() {
                 startActivity(intent)
                 true
             }
+            android.R.id.home -> {
+                finish()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -105,11 +111,9 @@ class ResultActivity : AppCompatActivity() {
             resultMessage += "${getString(R.string.details)}\n"
 
             // is decoding successful
-            resultMessage += if (result.contents == myContents) {
-                getString(R.string.decoding_succeeded)
-            } else {
-                getString(R.string.decoding_failed)
-            } + "\n"
+            if (result.contents == myContents) {
+                resultMessage += getString(R.string.decoding_succeeded) + "\n"
+            }
 
             // error collection level
             resultMessage +=
@@ -170,7 +174,7 @@ class ResultActivity : AppCompatActivity() {
                     val key = sp.getString("key$i", null)
                     // no more keys
                     if (key == null) {
-                        resultMessage += "\n" + getString(R.string.decrypting_failed) + "\n"
+                        resultMessage += "\n" + getString(R.string.decryption_failed) + "\n"
                         break
                     }
 
@@ -192,7 +196,6 @@ class ResultActivity : AppCompatActivity() {
 
         } catch (e: Exception) {
             resultMessage += "\n" + getString(R.string.exception_occurred)
-            resultMessage += "\n\n" + e.stackTraceToString()
         }
 
         return resultMessage

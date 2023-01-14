@@ -27,6 +27,8 @@ class ResultActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         sp = PreferenceManager.getDefaultSharedPreferences(this)
 
         val result = (intent.getSerializableExtra(RESULT) ?: return) as Result
@@ -85,6 +87,10 @@ class ResultActivity : AppCompatActivity() {
             R.id.menuItemLicenses -> {
                 val intent = Intent(this, LicensesActivity::class.java)
                 startActivity(intent)
+                true
+            }
+            android.R.id.home -> {
+                finish()
                 true
             }
             else -> super.onOptionsItemSelected(item)

@@ -24,6 +24,7 @@
     <string name="settings">Settings</string>
     <string name="licenses">Licenses</string>
     <string name="analyzing">Analyzing…</string>
+    <string name="beep">Beep</string>
     <string name="vibration">Vibration</string>
     <string name="not_yet_implemented">not yet implemented</string>
     <string name="sqrc_enabled">SQRC® enabled</string>

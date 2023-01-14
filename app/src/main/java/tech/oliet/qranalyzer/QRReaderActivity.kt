@@ -29,11 +29,14 @@ class QRReaderActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
+        val sp = PreferenceManager.getDefaultSharedPreferences(this)
+        val beepEnabled = sp.getBoolean("beep", false)
+
         val options = ScanOptions().apply {
             setPrompt(getString(R.string.prompt))
             setDesiredBarcodeFormats(ScanOptions.QR_CODE)
             setOrientationLocked(false)
-            setBeepEnabled(false)
+            setBeepEnabled(beepEnabled)
             setCameraId(0)
             captureActivity = ToolbarCaptureActivity::class.java
         }

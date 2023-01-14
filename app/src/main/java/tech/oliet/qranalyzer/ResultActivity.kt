@@ -190,7 +190,6 @@ class ResultActivity : AppCompatActivity() {
 
         } catch (e: Exception) {
             resultMessage += "\n" + getString(R.string.exception_occurred)
-            resultMessage += "\n\n" + e.stackTraceToString()
         }
 
         return resultMessage

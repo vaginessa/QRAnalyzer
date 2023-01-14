@@ -69,8 +69,12 @@ class SQRCDecoder(
         var lens = emptyArray<Pair<Int, Int>>()
 
         var i = startIndex - 1
-        do {
+        while (true) {
             i = rawBytesHex.indexOf("6", i + 1)
+
+            if (i == -1) {
+                break
+            }
 
             val j = i + 1
 
@@ -86,7 +90,7 @@ class SQRCDecoder(
             } catch (e: StringIndexOutOfBoundsException) {
                 /* DO NOTHING */
             }
-        } while (i != -1)
+        }
 
         return lens
     }

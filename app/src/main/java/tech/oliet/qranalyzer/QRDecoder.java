@@ -330,9 +330,11 @@ public class QRDecoder {
 
         this.residualData = residualData.toString();
 
-        this.hiddenData = hiddenData.toString();
+        if (!hiddenData.toString().equals("00")) {
+            this.hiddenData = hiddenData.toString();
+        }
 
-        end_index = i / 8;
+        end_index = i / 4;
 
         return contents.toString();
     }

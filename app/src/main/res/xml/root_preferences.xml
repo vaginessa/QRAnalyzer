@@ -2,6 +2,7 @@
 
     <CheckBoxPreference
         app:defaultValue="false"
+        app:isPreferenceVisible="false"
         app:key="beep"
         app:title="@string/beep" />
 

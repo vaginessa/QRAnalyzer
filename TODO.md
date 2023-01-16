@@ -1,7 +1,12 @@
 # TODO
 
+## issues
+
+- Hex contents is strange
+- Hidden data fix is ad hoc
+
 ## version 2.1
 
 - Histories
-- From an image -> uses-feature android:required="false"
 - Share button
+- ~~From an image~~

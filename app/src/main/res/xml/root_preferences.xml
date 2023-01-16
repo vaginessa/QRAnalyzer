@@ -25,36 +25,43 @@
             app:useSimpleSummaryProvider="true" />
 
         <EditTextPreference
+            app:defaultValue=""
             app:key="key2"
             app:title="@string/key2"
             app:useSimpleSummaryProvider="true" />
 
         <EditTextPreference
+            app:defaultValue=""
             app:key="key3"
             app:title="@string/key3"
             app:useSimpleSummaryProvider="true" />
 
         <EditTextPreference
+            app:defaultValue=""
             app:key="key4"
             app:title="@string/key4"
             app:useSimpleSummaryProvider="true" />
 
         <EditTextPreference
+            app:defaultValue=""
             app:key="key5"
             app:title="@string/key5"
             app:useSimpleSummaryProvider="true" />
 
         <EditTextPreference
+            app:defaultValue=""
             app:key="key6"
             app:title="@string/key6"
             app:useSimpleSummaryProvider="true" />
 
         <EditTextPreference
+            app:defaultValue=""
             app:key="key7"
             app:title="@string/key7"
             app:useSimpleSummaryProvider="true" />
 
         <EditTextPreference
+            app:defaultValue=""
             app:key="key8"
             app:title="@string/key8"
             app:useSimpleSummaryProvider="true" />

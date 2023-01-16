@@ -38,4 +38,5 @@
     <string name="key6">Key6</string>
     <string name="key7">Key7</string>
     <string name="key8">Key8</string>
+    <string name="key_is_invalid">Key%d is invalid</string>
 </resources>

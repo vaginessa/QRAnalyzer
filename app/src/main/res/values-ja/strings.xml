@@ -39,4 +39,5 @@
     <string name="key6">キー6</string>
     <string name="key7">キー7</string>
     <string name="key8">キー8</string>
+    <string name="key_is_invalid">キー%dが不正です</string>
 </resources>

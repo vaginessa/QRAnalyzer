@@ -15,12 +15,15 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.preference.PreferenceManager
 import kotlin.concurrent.thread
 
 class ResultActivity : AppCompatActivity() {
+    private val handler = Handler(Looper.getMainLooper())
+
     private lateinit var sp: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,7 +45,8 @@ class ResultActivity : AppCompatActivity() {
         val progressBar = ProgressBar(this)
 
         constraintLayoutResult.addView(
-            progressBar, ActionBar.LayoutParams(
+            progressBar,
+            ActionBar.LayoutParams(
                 ActionBar.LayoutParams.MATCH_PARENT,
                 ActionBar.LayoutParams.MATCH_PARENT
             )
@@ -51,7 +55,7 @@ class ResultActivity : AppCompatActivity() {
         thread {
             val resultMessage = getResultMessage(result)
 
-            Handler(Looper.getMainLooper()).post {
+            handler.post {
                 val textViewResult = findViewById<TextView>(R.id.textViewResult)
                 textViewResult.text = resultMessage
 
@@ -156,7 +160,7 @@ class ResultActivity : AppCompatActivity() {
                 resultMessage += "\n${getString(R.string.hidden_data)}: ${qrDecoder.hiddenData}\n"
             }
 
-            if (!sp.getBoolean("sqrc_enabled", false)) {
+            if (!sp.getBoolean("sqrc_enabled", true)) {
                 return resultMessage
             }
 
@@ -178,7 +182,15 @@ class ResultActivity : AppCompatActivity() {
                         break
                     }
 
+                    if (key == "") {
+                        continue
+                    }
+
                     if (!regex.containsMatchIn(key)) {
+                        val message = getString(R.string.key_is_invalid, i)
+                        handler.post {
+                            Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+                        }
                         continue
                     }
 
